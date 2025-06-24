@@ -284,32 +284,6 @@ if components and df_raw is not None:
         ax3.set_ylabel("Provinsi")
         st.pyplot(fig3)
 
-    with tab3:
-        st.header("Penjelasan Model dan Metodologi")
-        st.markdown("""
-        Model yang digunakan dalam analisis ini adalah **Mixed-Effects Linear Model (Model Efek Campuran)**. Model ini dipilih karena kemampuannya untuk menangani data yang memiliki struktur hirarkis atau berkelompok, seperti data dari berbagai provinsi selama beberapa tahun.
-
-        #### Mengapa Mixed-Effects Model?
-        Data IPM dan zakat dari setiap provinsi cenderung memiliki korelasi internal. Artinya, pengukuran dari provinsi yang sama (misalnya IPM Jawa Barat tahun 2021 dan 2022) lebih mirip satu sama lain dibandingkan dengan pengukuran dari provinsi lain. Model regresi linear biasa tidak dapat menangani korelasi ini, yang dapat menyebabkan kesimpulan yang salah.
-
-        **Intraclass Correlation Coefficient (ICC)** dari data ini adalah **0.889**, yang menunjukkan bahwa 88.9% variasi IPM disebabkan oleh perbedaan antar provinsi. Nilai ICC yang tinggi ini memvalidasi penggunaan Mixed-Effects Model.
-
-        #### Komponen Model:
-        1.  **Fixed Effects (Efek Tetap):** Ini adalah variabel yang kita yakini memiliki pengaruh yang sama di semua provinsi. Dalam model ini, efek tetap meliputi:
-            - Dana zakat di bidang: `Pendidikan`, `Kesehatan`, `Ekonomi`, `Kemanusiaan`.
-            - `zakat_per_kapita` dan `total_zakat`.
-            - `tahun` sebagai penanda waktu.
-            Koefisien dari efek tetap ini menunjukkan rata-rata pengaruh variabel tersebut terhadap IPM di seluruh Indonesia.
-
-        2.  **Random Effects (Efek Acak):** Ini adalah bagian yang paling menarik. Model ini memperbolehkan pengaruh variabel-variabel zakat untuk **berbeda di setiap provinsi**.
-            - **Random Intercept:** Setiap provinsi memiliki "baseline" IPM yang berbeda, bahkan jika faktor zakatnya sama.
-            - **Random Slope:** Efektivitas dana zakat (misalnya, dana pendidikan) bisa berbeda-beda. Di satu provinsi, kenaikan 1 miliar dana pendidikan bisa menaikkan IPM lebih tinggi dibandingkan provinsi lain.
-
-        #### Teknik Regularisasi: Shrinkage
-        Model ini cenderung *overfitting* pada data training. Untuk mengatasinya, teknik **Shrinkage** (penyusutan) diterapkan pada *random effects*. Koefisien random effect "ditarik" mendekati nol, sehingga mengurangi variasi ekstrem antar provinsi dan membuat model lebih generalisasi pada data baru. Tingkat shrinkage optimal (0.4) dipilih untuk menyeimbangkan antara performa model dan pencegahan overfitting.
-
-        Dengan pendekatan ini, kita tidak hanya mendapatkan prediksi IPM, tetapi juga wawasan mengenai program zakat mana yang paling efektif di provinsi tertentu.
-        """)
 
 else:
     st.error("Gagal memuat file model atau data. Aplikasi tidak dapat berjalan.")
