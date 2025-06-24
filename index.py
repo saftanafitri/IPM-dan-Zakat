@@ -171,7 +171,7 @@ if components and df_raw is not None:
 
     # --- Tampilan Utama ---
 
-    tab1, tab2, tab3 = st.tabs(["📊 Dasbor Prediksi", "📈 Visualisasi Data (EDA)", "🧠 Penjelasan Model"])
+    tab1, tab2 = st.tabs(["📊 Dasbor Prediksi", "📈 Visualisasi Data (EDA)"])
 
     with tab1:
         st.header("Hasil Prediksi IPM")
