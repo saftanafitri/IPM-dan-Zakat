@@ -130,14 +130,7 @@ components = load_model_and_components()
 df_raw = load_raw_data()
 
 if components and df_raw is not None:
-    # --- Kolom Sidebar ---
-    st.sidebar.header("Tentang Proyek")
-    st.sidebar.info(
-        "Proyek ini menganalisis data Indeks Pembangunan Manusia (IPM) dan data pendistribusian "
-        "zakat dari Badan Pusat Statistik (BPS) dan sumber data terbuka lainnya. "
-        "Model yang digunakan adalah **Mixed-Effects Regression** untuk memperhitungkan variasi "
-        "antar provinsi (random effects)."
-    )
+
     st.sidebar.header("Parameter Input")
     
     # Input dari Pengguna di Sidebar
